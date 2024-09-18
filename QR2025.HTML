@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .section {
+            width: 100%;
+            max-width: 800px;
+            padding: 50px;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: #007bff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: none;
+            border-radius: 8px;
+            background: #f0f0f0;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+        }
+
+        button {
+            padding: 15px 40px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .qr-code {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .download-buttons {
+            margin-top: 15px;
+        }
+
+        .download-buttons button {
+            margin: 10px;
+            background-color: #28a745;
+            font-size: 18px;
+        }
+
+        .download-buttons button:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            color: #333;
+            letter-spacing: 1px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h2>أدخل الروابط</h2>
+        <input type="text" id="link-input" placeholder="أدخل الرابط هنا">
+        <button onclick="generateQRCode()">تحويل إلى QR</button>
+    </div>
+
+    <div class="section">
+        <h2>QR Codes</h2>
+        <div id="qr-code-container"></div>
+    </div>
+
+    <footer>
+        ABDULMAJEED HAMDULLAH
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        function generateQRCode() {
+            const input = document.getElementById('link-input').value;
+            const qrContainer = document.getElementById('qr-code-container');
+            qrContainer.innerHTML = ''; // مسح محتوى المربع الثاني
+
+            if (input) {
+                const links = input.split(','); // تقسيم الروابط المدخلة
+
+                links.forEach((link, index) => {
+                    const qrCodeDiv = document.createElement('div');
+                    qrCodeDiv.classList.add('qr-code');
+                    
+                    // إنشاء QR Code بصيغة SVG
+                    const qrCodeSVG = document.createElement('div');
+                    qrCodeSVG.id = `qrcode-${index}`;
+                    qrCodeDiv.appendChild(qrCodeSVG);
+
+                    // توليد QR Code
+                    new QRCode(qrCodeSVG, {
+                        text: link.trim(),
+                        width: 250,
+                        height: 250,
+                        correctLevel: QRCode.CorrectLevel.H,
+                        useSVG: true // نحدد هنا استخدام SVG
+                    });
+
+                    const downloadSvgBtn = document.createElement('button');
+                    downloadSvgBtn.textContent = 'تحميل SVG';
+                    downloadSvgBtn.onclick = () => downloadSVG(qrCodeSVG, index);
+
+                    const copySvgBtn = document.createElement('button');
+                    copySvgBtn.textContent = 'نسخ SVG';
+                    copySvgBtn.onclick = () => copySVG(qrCodeSVG);
+
+                    const btnContainer = document.createElement('div');
+                    btnContainer.classList.add('download-buttons');
+                    btnContainer.appendChild(downloadSvgBtn);
+                    btnContainer.appendChild(copySvgBtn);
+
+                    qrCodeDiv.appendChild(btnContainer);
+                    qrContainer.appendChild(qrCodeDiv);
+                });
+            }
+        }
+
+        function downloadSVG(qrCodeSVG, index) {
+            const svgElement = qrCodeSVG.querySelector('svg');
+            const svgData = new XMLSerializer().serializeToString(svgElement);
+            const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+            const svgUrl = URL.createObjectURL(svgBlob);
+            const link = document.createElement('a');
+            link.href = svgUrl;
+            link.download = `qr-code-${index}.svg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function copySVG(qrCodeSVG) {
+            const svgElement = qrCodeSVG.querySelector('svg');
+            const svgData = new XMLSerializer().serializeToString(svgElement);
+            navigator.clipboard.writeText(svgData).then(() => {
+                alert('تم نسخ QR كـ SVG إلى الحافظة');
+            }).catch(err => {
+                alert('فشل في نسخ SVG: ' + err);
+            });
+        }
+    </script>
+</body>
+</html>
