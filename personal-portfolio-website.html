@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع المصمم الجرافيكي المبدع</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        nav ul li {
+            list-style: none;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        section {
+            padding: 60px 0;
+            background: white;
+            margin: 40px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.5em;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        form {
+            display: grid;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: var(--secondary-color);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .social-icons a {
+            margin: 0 15px;
+            font-size: 24px;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary-color);
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="fade-in-up">اسم المصمم الجرافيكي</h1>
+            <p class="fade-in-up">مصمم جرافيك إبداعي ومبتكر</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">نبذة عني</a></li>
+            <li><a href="#portfolio">معرض الأعمال</a></li>
+            <li><a href="#services">الخدمات</a></li>
+            <li><a href="#testimonials">آراء العملاء</a></li>
+            <li><a href="#contact">اتصل بي</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section id="about" class="fade-in-up">
+            <h2>نبذة عني</h2>
+            <p>مرحبًا! أنا مصمم جرافيك شغوف بخلق تصاميم مبتكرة وجذابة. أمتلك خبرة واسعة في مجال التصميم الإبداعي، وأسعى دائمًا لتقديم حلول بصرية فريدة تلبي احتياجات عملائي وتتجاوز توقعاتهم. أؤمن بقوة التصميم في إيصال الرسائل وإلهام الجماهير.</p>
+        </section>
+
+        <section id="portfolio" class="fade-in-up">
+            <h2>معرض الأعمال</h2>
+            <div class="gallery">
+                <img src="/api/placeholder/400/300" alt="تصميم هوية بصرية">
+                <img src="/api/placeholder/400/300" alt="تصميم موقع إلكتروني">
+                <img src="/api/placeholder/400/300" alt="تصميم إعلان">
+                <img src="/api/placeholder/400/300" alt="تصميم كتاب">
+                <img src="/api/placeholder/400/300" alt="تصميم شعار">
+                <img src="/api/placeholder/400/300" alt="تصميم تطبيق موبايل">
+            </div>
+        </section>
+
+        <section id="services" class="fade-in-up">
+            <h2>الخدمات</h2>
+            <ul>
+                <li>تصميم الهوية البصرية للشركات</li>
+                <li>تصميم واجهات المواقع الإلكترونية والتطبيقات</li>
+                <li>تصميم المطبوعات والإعلانات</li>
+                <li>تصميم محتوى وسائل التواصل الاجتماعي</li>
+                <li>تصميم الكتب والمجلات</li>
+                <li>تصميم الشعارات والرموز</li>
+            </ul>
+        </section>
+
+        <section id="testimonials" class="fade-in-up">
+            <h2>آراء العملاء</h2>
+            <blockquote>
+                "لقد كان العمل مع [اسم المصمم] تجربة رائعة. لقد فهم رؤيتنا بسرعة وترجمها إلى تصميم مذهل تجاوز توقعاتنا. نوصي به بشدة لأي شركة تبحث عن تصاميم مبتكرة وعالية الجودة." - أحمد، مدير التسويق في شركة تقنية
+            </blockquote>
+            <blockquote>
+                "إبداع [اسم المصمم] وانتباهه للتفاصيل أذهلني. لقد نجح في إحياء علامتنا التجارية وجعلها تبدو عصرية وجذابة. سنستمر بالتأكيد في العمل معه في المستقبل." - سارة، صاحبة متجر أزياء
+            </blockquote>
+        </section>
+
+        <section id="contact" class="fade-in-up">
+            <h2>اتصل بي</h2>
+            <form>
+                <input type="text" placeholder="الاسم" required>
+                <input type="email" placeholder="البريد الإلكتروني" required>
+                <textarea placeholder="رسالتك" required></textarea>
+                <button type="submit">إرسال</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
+            <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>&copy; 2024 اسم المصمم الجرافيكي. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script>
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScrollAnimation() {
+            var elements = document.querySelectorAll('.fade-in-up');
+            elements.forEach(function(element) {
+                if (isElementInViewport(element)) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScrollAnimation);
+        window.addEventListener('load', handleScrollAnimation);
+    </script>
+</body>
+</html>
